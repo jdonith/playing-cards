@@ -12,11 +12,11 @@ public class Card implements Comparable<Card> {
     this.suit = suit;
   }
 
-  public Rank Rank() {
+  public Rank rank() {
     return rank;
   }
 
-  public Suit Suit() {
+  public Suit suit() {
     return suit;
   }
 
@@ -24,7 +24,6 @@ public class Card implements Comparable<Card> {
   public int hashCode() {
     return Objects.hash(rank, suit); // FIXME: 2022-09-16 Move this to initialization.
   }
-
 
   @Override
   public boolean equals(Object obj) {
@@ -40,7 +39,6 @@ public class Card implements Comparable<Card> {
     return result;
   }
 
-
   @Override
   public String toString() {
     return rank.symbol() + suit.symbol();
@@ -48,6 +46,11 @@ public class Card implements Comparable<Card> {
 
   @Override
   public int compareTo(Card other) {
-    return 0;
+    int comparison = suit.compareTo(other.suit);
+    if (comparison == 0) {
+      comparison = rank.compareTo(other.rank);
+    }
+    return comparison;
   }
+
 }
